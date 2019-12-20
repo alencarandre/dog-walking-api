@@ -51,3 +51,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'enumerize', '~> 2.3', '>= 2.3.1'
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'rack-cors', '~> 1.0', '>= 1.0.3'
+gem 'responders', '~> 3.0'
