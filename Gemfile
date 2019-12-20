@@ -34,6 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
   gem 'rubocop-rails', '~> 2.4'
   gem 'rubocop-performance', '~> 1.5', '>= 1.5.1'
+  gem 'brakeman', '~> 4.7', '>= 4.7.2'
 end
 
 group :development do
