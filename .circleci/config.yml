@@ -14,7 +14,7 @@ jobs:
             PGUSER: postgres
 
 
-      - image: circleci/postgres:12.1-apine
+      - image: circleci/postgres:12.1
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: circle-test_test
