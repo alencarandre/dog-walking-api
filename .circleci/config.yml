@@ -47,6 +47,11 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run:
+          name: setup database.yml
+          command: |
+            cat config/database.yml.example | sed 's/host\: database/host\: 127\.0\.0\.1/g' > config/database.yml
+
       # linter
       - run: bundle exec rubocop -c .rubocop.yml --force-exclusion $(git diff origin/master --name-only --diff-filter=d)
 
