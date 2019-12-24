@@ -21,7 +21,7 @@ bin/test
 
 ## Licence
 
-The app is available as open source under the terms of the MIT License.
+This app is available as open source under the terms of the MIT License.
 
 ## Author
 
