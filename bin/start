@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+bundle install --jobs=4
+
+rm /var/www/dog-walking-api/tmp/pids/server.pid
+
+db_name=`cat config/database.yml | grep 'database:' | head -1 | awk -F ': ' '{print $2}'`
+db_user=`cat config/database.yml | grep 'username:' | head -1 | awk -F ': ' '{print $2}'`
+db_host=`cat config/database.yml | grep 'host:' | head -1 | awk -F ': ' '{print $2}'`
+db_pass=$DOG_WALKING_API_DATABASE_PASSWORD
+
+while ! PGPASSWORD="$db_pass" psql -U $db_user -h $db_host -c "\q"; do
+  echo $db_host
+  echo "Awaiting postgres up..."
+  sleep 5
+done
+
+echo "Postgres is up, yeh"
+
+if ! PGPASSWORD="$db_pass" psql -h $db_host -U $db_user -c "\l" | grep $db_name; then
+  echo "Creating database"
+  bundle exec rails db:create
+
+  echo "Loading database schema"
+  bundle exec rails db:schema:load
+
+  echo "Loading seeds"
+  bundle exec rails db:seed
+fi
+
+echo "Runing migration"
+bundle exec rails db:migrate
+
+bundle exec rails s -b 0.0.0.0 -p $PORT
