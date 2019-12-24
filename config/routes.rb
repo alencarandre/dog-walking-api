@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :dogs, only: :index
+      resources :table_prices, only: :index
 
       resources :dog_walking, except: [:update, :destroy] do
         member do
