@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:12.1
+    environment:
+      POSTGRES_PASSWORD: ${DOG_WALKING_API_DATABASE_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    volumes:
+      - '/tmp/dog-walking-api/data:/var/lib/postgresql/data'
+
+  rails:
+    build: .
+    command: bin/start
+    environment:
+      RAILS_ENV: development
+      PORT: 3000
+      DOG_WALKING_API_DATABASE_PASSWORD: ${DOG_WALKING_API_DATABASE_PASSWORD}
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/var/www/dog-walking-api"
+    depends_on:
+      - database
