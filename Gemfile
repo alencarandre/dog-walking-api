@@ -23,7 +23,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,5 +51,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'enumerize', '~> 2.3', '>= 2.3.1'
 gem 'active_model_serializers', '~> 0.10.10'
-gem 'rack-cors', '~> 1.0', '>= 1.0.3'
-gem 'responders', '~> 3.0'
+gem 'draper', '~> 3.1'
+gem 'timecop', '~> 0.9.1'
+gem 'aasm', '~> 5.0', '>= 5.0.6'
