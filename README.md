@@ -1,24 +1,28 @@
-# README
+# Dog Walking API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web API for managing dog walkings
 
-Things you may want to cover:
+## Dependencies
 
-* Ruby version
+* Docker (~> 18.09.2)
+* Docker Compose (~> 1.23.2)
 
-* System dependencies
+## Usage
 
-* Configuration
+```sh
+bin/serve
+```
 
-* Database creation
+## Run tests
 
-* Database initialization
+```sh
+bin/test
+```
 
-* How to run the test suite
+## Licence
 
-* Services (job queues, cache servers, search engines, etc.)
+The app is available as open source under the terms of the MIT License.
 
-* Deployment instructions
+## Author
 
-* ...
+[@alencarandre](https://github.com/alencarandre)
