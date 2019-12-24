@@ -18,3 +18,44 @@ breeds = DogBreed.all
       age: (0..10).to_a.sample
     )
 end
+
+TablePrice.where(cadence: 30).first_or_create!(price: 25.0, price_additional: 15.0)
+TablePrice.where(cadence: 60).first_or_create!(price: 35.0, price_additional: 20.0)
+
+(1..3).each do |i|
+  DogWalking.create!(
+    status: :scheduled,
+    duration: 30,
+    price: 1,
+    scheduled_at: (i-1).days.from_now,
+    latitude: 100.9999,
+    longitude: 200.5555,
+    pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+  )
+end
+
+DogWalking.create!(
+  status: :walking,
+  duration: 30,
+  price: 1,
+  scheduled_at: 1.days.ago,
+  latitude: 100.9999,
+  longitude: 200.5555,
+  started_at: 1.days.ago,
+  pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+)
+
+(1..3).each do |i|
+  DogWalking.create!(
+    status: :finished,
+    duration: 30,
+    price: 1,
+    final_price: 2,
+    scheduled_at: i.days.ago,
+    latitude: 100.9999,
+    longitude: 200.5555,
+    started_at: i.days.ago,
+    finished_at: Time.zone.now,
+    pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+  )
+end
