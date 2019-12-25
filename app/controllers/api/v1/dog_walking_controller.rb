@@ -10,7 +10,7 @@ class Api::V1::DogWalkingController < ApplicationController
   def show
     dog_walking = DogWalkingService::Finder.(DogWalking, params)
 
-    render json: dog_walking, serializer: DogWalkingDetailedSerializer
+    render json: dog_walking, serializer: DogWalkingSerializer
   end
 
   # POST /api/v1/dog_walking
@@ -18,7 +18,7 @@ class Api::V1::DogWalkingController < ApplicationController
     dog_walking = DogWalkingService::Creator.(DogWalking, dog_walking_params)
 
     if dog_walking.valid?
-      render json: dog_walking, status: :created, serializer: DogWalkingDetailedSerializer
+      render json: dog_walking, status: :created, serializer: DogWalkingSerializer
     else
       render json: dog_walking, status: :conflict, serializer: ModelErrorsSerializer
     end
@@ -31,7 +31,7 @@ class Api::V1::DogWalkingController < ApplicationController
     if dog_walking.errors.present?
       render json: dog_walking, status: :conflict, serializer: ModelErrorsSerializer
     else
-      render json: dog_walking, serializer: DogWalkingDetailedSerializer
+      render json: dog_walking, serializer: DogWalkingSerializer
     end
   end
 
@@ -42,7 +42,7 @@ class Api::V1::DogWalkingController < ApplicationController
     if dog_walking.errors.present?
       render json: dog_walking, status: :conflict, serializer: ModelErrorsSerializer
     else
-      render json: dog_walking, serializer: DogWalkingDetailedSerializer
+      render json: dog_walking, serializer: DogWalkingSerializer
     end
   end
 
