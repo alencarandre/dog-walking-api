@@ -4,7 +4,7 @@ set -e
 
 bundle install --jobs=4
 
-rm /var/www/dog-walking-api/tmp/pids/server.pid
+rm -rf /var/www/dog-walking-api/tmp/pids/server.pid
 
 db_name=`cat config/database.yml | grep 'database:' | head -1 | awk -F ': ' '{print $2}'`
 db_user=`cat config/database.yml | grep 'username:' | head -1 | awk -F ': ' '{print $2}'`
