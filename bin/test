@@ -2,5 +2,5 @@
 
 set -e
 
-command="bundle install && RAILS_ENV=test rails db:setup && RAILS_ENV=test bundle exec rspec"
-docker-compose run rails bash -c "$command"
+command="bundle install && RAILS_ENV=test rails db:create db:migrate && RAILS_ENV=test bundle exec rspec"
+docker-compose run --rm rails bash -c "$command"
