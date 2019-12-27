@@ -12,4 +12,13 @@ RSpec.describe DogWalkingService::Finder do
     expect(described_class.(DogWalking, id: dog_walking.id))
       .to eq(dog_walking)
   end
+
+  it 'preload association models' do
+    dog_walking = FactoryBot.create(:dog_walking, scheduled_at: 1.day.from_now)
+
+    dog_walking = described_class.(DogWalking, id: dog_walking.id)
+
+    expect(dog_walking.association(:pets)).to be_loaded
+    expect(dog_walking.pets.first.association(:dog_breed)).to be_loaded
+  end
 end

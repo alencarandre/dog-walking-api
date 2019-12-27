@@ -8,8 +8,8 @@ class DogWalkingService::Filter < ApplicationService
 
   def call
     filtered_dog_walking = dog_walking
-      .joins(:pets)
-      .includes(:pets)
+      .joins(pets: :dog_breed)
+      .includes(pets: :dog_breed)
 
     filtered_dog_walking = upcoming_filter(dog_walking) if params[:upcoming].present?
 
