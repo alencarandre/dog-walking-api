@@ -12,11 +12,29 @@ RSpec.describe DogWalkingService::Filter do
       expect(dog_walkings.count).to eq(3)
       expect(dog_walkings).to match_array([ dog_walking1, dog_walking2, dog_walking3 ])
     end
+
+    it 'preload association models' do
+      FactoryBot.create(:dog_walking, scheduled_at: 1.day.from_now)
+
+      dog_walking = described_class.(DogWalking, {}).first
+
+      expect(dog_walking.association(:pets)).to be_loaded
+      expect(dog_walking.pets.first.association(:dog_breed)).to be_loaded
+    end
   end
 
   context 'when passed upcoming flag via params' do
     before { Timecop.freeze(Time.zone.local(2500, 12, 30, 0, 0, 0, 0)) }
     after { Timecop.return }
+
+    it 'preload association models' do
+      FactoryBot.create(:dog_walking, scheduled_at: 1.day.from_now)
+
+      dog_walking = described_class.(DogWalking, {}).first
+
+      expect(dog_walking.association(:pets)).to be_loaded
+      expect(dog_walking.pets.first.association(:dog_breed)).to be_loaded
+    end
 
     it 'does not list if scheduled in the past' do
       DogWalking::STATUSES.each do |status|

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :dogs, only: :index
       resources :table_prices, only: :index
 
-      resources :dog_walking, except: [:update, :destroy] do
+      resources :dog_walkings, except: [:update, :destroy] do
         member do
           patch :start_walking
           patch :finish_walking

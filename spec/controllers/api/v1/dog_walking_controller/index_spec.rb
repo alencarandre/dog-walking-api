@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::DogWalkingController, type: :controller do
+RSpec.describe Api::V1::DogWalkingsController, type: :controller do
   describe '#index' do
     context 'when flag upcoming is not passed' do
       it 'list all dog walking' do
@@ -17,29 +17,71 @@ RSpec.describe Api::V1::DogWalkingController, type: :controller do
           'id' => dog_walking1.id,
           'status' => dog_walking1.status,
           'duration' => dog_walking1.duration,
+          'real_duration' => dog_walking1.decorate.real_duration,
           'price' => dog_walking1.price,
+          'final_price' => dog_walking1.final_price,
+          'latitude' => dog_walking1.latitude,
+          'longitude' => dog_walking1.longitude,
           'scheduled_at' => dog_walking1.decorate.scheduled_at,
           'started_at' => dog_walking1.decorate.started_at,
           'finished_at' => dog_walking1.decorate.finished_at,
-          'pets' => dog_walking1.pets.count
+          'pets' => [
+            {
+              'id' => dog_walking1.pets.first.id,
+              'name' => dog_walking1.pets.first.name,
+              'age' => dog_walking1.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking1.pets.first.dog_breed.id,
+                'name' => dog_walking1.pets.first.dog_breed.name
+              }
+            }
+          ]
         }, {
           'id' => dog_walking2.id,
           'status' => dog_walking2.status,
           'duration' => dog_walking2.duration,
+          'real_duration' => dog_walking2.decorate.real_duration,
           'price' => dog_walking2.price,
+          'final_price' => dog_walking2.final_price,
+          'latitude' => dog_walking2.latitude,
+          'longitude' => dog_walking2.longitude,
           'scheduled_at' => dog_walking2.decorate.scheduled_at,
           'started_at' => dog_walking2.decorate.started_at,
           'finished_at' => dog_walking2.decorate.finished_at,
-          'pets' => dog_walking2.pets.count
+          'pets' => [
+            {
+              'id' => dog_walking2.pets.first.id,
+              'name' => dog_walking2.pets.first.name,
+              'age' => dog_walking2.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking2.pets.first.dog_breed.id,
+                'name' => dog_walking2.pets.first.dog_breed.name
+              }
+            }
+          ]
         }, {
           'id' => dog_walking3.id,
           'status' => dog_walking3.status,
           'duration' => dog_walking3.duration,
+          'real_duration' => dog_walking3.decorate.real_duration,
           'price' => dog_walking3.price,
+          'final_price' => dog_walking3.final_price,
+          'latitude' => dog_walking3.latitude,
+          'longitude' => dog_walking3.longitude,
           'scheduled_at' => dog_walking3.decorate.scheduled_at,
           'started_at' => dog_walking3.decorate.started_at,
           'finished_at' => dog_walking3.decorate.finished_at,
-          'pets' => dog_walking3.pets.count
+          'pets' => [
+            {
+              'id' => dog_walking3.pets.first.id,
+              'name' => dog_walking3.pets.first.name,
+              'age' => dog_walking3.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking3.pets.first.dog_breed.id,
+                'name' => dog_walking3.pets.first.dog_breed.name
+              }
+            }
+          ]
         }])
       end
     end
@@ -111,20 +153,48 @@ RSpec.describe Api::V1::DogWalkingController, type: :controller do
           'id' => dog_walking1.id,
           'status' => dog_walking1.status,
           'duration' => dog_walking1.duration,
+          'real_duration' => dog_walking1.decorate.real_duration,
           'price' => dog_walking1.price,
+          'final_price' => dog_walking1.final_price,
+          'latitude' => dog_walking1.latitude,
+          'longitude' => dog_walking1.longitude,
           'scheduled_at' => dog_walking1.decorate.scheduled_at,
-          'started_at' => nil,
-          'finished_at' => nil,
-          'pets' => dog_walking1.pets.count
+          'started_at' => dog_walking1.decorate.started_at,
+          'finished_at' => dog_walking1.decorate.finished_at,
+          'pets' => [
+            {
+              'id' => dog_walking1.pets.first.id,
+              'name' => dog_walking1.pets.first.name,
+              'age' => dog_walking1.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking1.pets.first.dog_breed.id,
+                'name' => dog_walking1.pets.first.dog_breed.name
+              }
+            }
+          ]
         }, {
           'id' => dog_walking2.id,
           'status' => dog_walking2.status,
           'duration' => dog_walking2.duration,
+          'real_duration' => dog_walking2.decorate.real_duration,
           'price' => dog_walking2.price,
+          'final_price' => dog_walking2.final_price,
+          'latitude' => dog_walking2.latitude,
+          'longitude' => dog_walking2.longitude,
           'scheduled_at' => dog_walking2.decorate.scheduled_at,
-          'started_at' => nil,
-          'finished_at' => nil,
-          'pets' => dog_walking2.pets.count
+          'started_at' => dog_walking2.decorate.started_at,
+          'finished_at' => dog_walking2.decorate.finished_at,
+          'pets' => [
+            {
+              'id' => dog_walking2.pets.first.id,
+              'name' => dog_walking2.pets.first.name,
+              'age' => dog_walking2.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking2.pets.first.dog_breed.id,
+                'name' => dog_walking2.pets.first.dog_breed.name
+              }
+            }
+          ]
         }])
       end
 
@@ -140,11 +210,25 @@ RSpec.describe Api::V1::DogWalkingController, type: :controller do
           'id' => dog_walking.id,
           'status' => dog_walking.status,
           'duration' => dog_walking.duration,
+          'real_duration' => dog_walking.decorate.real_duration,
           'price' => dog_walking.price,
+          'final_price' => dog_walking.final_price,
+          'latitude' => dog_walking.latitude,
+          'longitude' => dog_walking.longitude,
           'scheduled_at' => dog_walking.decorate.scheduled_at,
-          'started_at' => nil,
-          'finished_at' => nil,
-          'pets' => dog_walking.pets.count
+          'started_at' => dog_walking.decorate.started_at,
+          'finished_at' => dog_walking.decorate.finished_at,
+          'pets' => [
+            {
+              'id' => dog_walking.pets.first.id,
+              'name' => dog_walking.pets.first.name,
+              'age' => dog_walking.pets.first.age,
+              'dog_breed' => {
+                'id' => dog_walking.pets.first.dog_breed.id,
+                'name' => dog_walking.pets.first.dog_breed.name
+              }
+            }
+          ]
         }])
       end
     end

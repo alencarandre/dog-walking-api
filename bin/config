@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -e config/database.yml ]; then
+  cp config/database.yml.example config/database.yml
+fi
