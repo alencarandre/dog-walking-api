@@ -23,39 +23,42 @@ TablePrice.where(cadence: 30).first_or_create!(price: 25.0, price_additional: 15
 TablePrice.where(cadence: 60).first_or_create!(price: 35.0, price_additional: 20.0)
 
 (1..3).each do |i|
+  pets = Dog.all.sample((1..3).to_a.sample).pluck(:id)
   DogWalking.create!(
     status: :scheduled,
     duration: 30,
-    price: 1,
+    price: DogWalkingService::PriceCalculator.(duration: 30, pets: pets.length),
     scheduled_at: (i-1).days.from_now,
     latitude: 100.9999,
     longitude: 200.5555,
-    pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+    pet_ids: pets
   )
 end
 
+pets = Dog.all.sample((1..3).to_a.sample).pluck(:id)
 DogWalking.create!(
   status: :walking,
   duration: 30,
-  price: 1,
+  price: DogWalkingService::PriceCalculator.(duration: 30, pets: pets.length),
   scheduled_at: 1.days.ago,
   latitude: 100.9999,
   longitude: 200.5555,
   started_at: 1.days.ago,
-  pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+  pet_ids: pets
 )
 
 (1..3).each do |i|
+  pets = Dog.all.sample((1..3).to_a.sample).pluck(:id)
   DogWalking.create!(
     status: :finished,
     duration: 30,
-    price: 1,
+    price: DogWalkingService::PriceCalculator.(duration: 30, pets: pets.length),
     final_price: 2,
     scheduled_at: i.days.ago,
     latitude: 100.9999,
     longitude: 200.5555,
     started_at: i.days.ago,
-    finished_at: Time.zone.now,
-    pet_ids: Dog.all.sample((1..3).to_a.sample).pluck(:id)
+    finished_at: i.days.ago + (30..60).to_a.sample.minutes,
+    pet_ids: pets
   )
 end
