@@ -2,8 +2,5 @@
 
 set -e
 
-if [ ! -e config/database.yml ]; then
-  cp config/database.yml.example config/database.yml
-fi
-
+bin/config
 docker-compose up
