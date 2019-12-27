@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::DogWalkingController, type: :controller do
+RSpec.describe Api::V1::DogWalkingsController, type: :controller do
   describe '#create' do
     before do
       Timecop.freeze(Time.zone.local(2500, 12, 30, 0, 0, 0, 0))

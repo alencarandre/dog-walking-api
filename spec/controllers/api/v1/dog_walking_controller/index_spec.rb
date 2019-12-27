@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::DogWalkingController, type: :controller do
+RSpec.describe Api::V1::DogWalkingsController, type: :controller do
   describe '#index' do
     context 'when flag upcoming is not passed' do
       it 'list all dog walking' do

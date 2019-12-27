@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::DogWalkingController, type: :controller do
+RSpec.describe Api::V1::DogWalkingsController, type: :controller do
   describe '#start_walking' do
     context 'when does not start walking' do
       it 'returns http 404 if pass invalid dog_walking' do
